@@ -1,4 +1,4 @@
-skewness = function(x, na.rm = FALSE) {
+skewness = function(x) {
   
   if (na.rm){
     x = x[!is.na(x)]
@@ -20,7 +20,7 @@ skewness = function(x, na.rm = FALSE) {
 }
 
 
-kurtosis = function(x, na.rm = FALSE) {
+kurtosis = function(x) {
   
   if (na.rm) x = x[!is.na(x)]
   
