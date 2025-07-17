@@ -5,8 +5,3 @@ if (!require("stringr")) install.packages("stringr", dependencies = T); library(
 if (!require("magrittr")) install.packages("magrittr", dependencies = T); library("magrittr") ##pipeline
 
 source("./R/utils.R")
-
-
-
-
-sin(240*pi/180)
