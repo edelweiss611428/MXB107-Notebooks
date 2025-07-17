@@ -1,13 +1,13 @@
 "Class","Type","Day","Location","Limit","Teaching_Staff","From","To"
-"LEC01 01","Lecture (Internal)","Wed","GP B117",240,"Chris Drovandi","11","13"
-"LEC01 01","Lecture (Online)","Wed","Online",1000,"Chris Drovandi","11","13"
-"PRC01 01","Practical (Online)","Wed","Online",30,"Narayan Srinivasan","16","18"
-"PRC01 01","Practical (Internal)","Thu","GP D413",35,"Narayan Srinivasan","16","18"
-"PRC01 02","Practical (Online)","Thu","Online",30,"Oliver Vu","16","18"
-"PRC01 03","Practical (Internal)","Thu","GP G216",35,"Minh Long Nguyen","9","11"
-"PRC01 07","Practical (Internal)","Thu","GP S520",25,"Ryan Kelly","14","16"
-"PRC01 08","Practical (Internal)","Thu","GP S517",30,"Nicholas Gecks-Preston","9","11"
-"PRC01 02","Practical (Internal)","Fri","GP G216",35,"Oliver Vu","9","11"
-"PRC01 04","Practical (Internal)","Fri","GP G216",35,"Arwen Nugteren","11","13"
-"PRC01 05","Practical (Internal)","Fri","GP S502",35,"Arwen Nugteren","15","17"
-"PRC01 06","Practical (Internal)","Fri","GP S519",35,"Minh Long Nguyen","15","17"
+"LEC01 01","Lecture (Internal)","Wed","GP B117",240,"Chris Drovandi","11",13
+"LEC01 01","Lecture (Online)","Wed","Online",1000,"Chris Drovandi","11",13
+"PRC01 01","Practical (Online)","Wed","Online",30,"Narayan Srinivasan","16",18
+"PRC01 01","Practical (Internal)","Thu","GP D413",35,"Narayan Srinivasan","16",18
+"PRC01 02","Practical (Online)","Thu","Online",30,"Oliver Vu","16",18
+"PRC01 03","Practical (Internal)","Thu","GP G216",35,"Minh Long Nguyen","9",11
+"PRC01 07","Practical (Internal)","Thu","GP S520",25,"Ryan Kelly","14",16
+"PRC01 08","Practical (Internal)","Thu","GP S517",30,"Nicholas Gecks-Preston","9",11
+"PRC01 02","Practical (Internal)","Fri","GP G216",35,"Oliver Vu","9",11
+"PRC01 04","Practical (Internal)","Fri","GP G216",35,"Arwen Nugteren","11",13
+"PRC01 05","Practical (Internal)","Fri","GP S502",35,"Arwen Nugteren","15",17
+"PRC01 06","Practical (Internal)","Fri","GP S519",35,"Minh Long Nguyen","15",17
