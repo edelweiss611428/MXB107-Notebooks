@@ -3,5 +3,6 @@ if (!require("dplyr")) install.packages("dplyr", dependencies = T); library("dpl
 if (!require("tidyr")) install.packages("tidyr", dependencies = T); library("tidyr") ##wrangling
 if (!require("stringr")) install.packages("stringr", dependencies = T); library("stringr") ##wrangling
 if (!require("magrittr")) install.packages("magrittr", dependencies = T); library("magrittr") ##pipeline
+if (!require("knitr")) install.packages("knitr", dependencies = T); library("knitr") ##pipeline
 
 source("./R/utils.R")
