@@ -210,3 +210,10 @@ chebyshevRule = function(data, xlim = c(min(data), max(data))) {
   }
 }
 
+
+rangeBasedSD = function(x){
+  
+  range = max(x) - min(x)
+  return(range/4)
+  
+}
