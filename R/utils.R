@@ -131,7 +131,7 @@ ModeBinMidpoint = function(x) {
 
 
 
-empiricalRule = function(data){
+empiricalRule = function(data, xlim = c(min(data), max(data))){
 
   # Empirical mean and SD
   empMean = mean(data)
@@ -146,7 +146,7 @@ empiricalRule = function(data){
   # Plot histogram with density curve
   hist(data, breaks = 30, probability = TRUE,
        main = "Gaussian Data with ±1 SD, ±2 SD, and ±3 SD Intervals",
-       xlab = "Value", col = "lightgray", border = "white")
+       xlab = "Value", col = "lightgray", border = "white", xlim = xlim)
   curve(dnorm(x, mean = empMean, sd = empSd), add = TRUE, col = "blue", lwd = 2)
   
   
