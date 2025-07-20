@@ -205,7 +205,7 @@ chebyshevRule = function(data, xlim = c(min(data), max(data))) {
   # Print results
   cat("Coverage vs. Chebyshev Lower Bound:\n")
   for (i in seq_along(ks)) {
-    cat(sprintf("k = %d: Empirical = %.2f%%, Chebyshev bound = %.2f%%\n",
+    cat(sprintf("k = %d: Empirical = %.2f%%, Chebyshev lower bound = %.2f%%\n",
                 ks[i], 100 * empirical_coverage[i], 100 * chebyshev_bounds[i]))
   }
 }
