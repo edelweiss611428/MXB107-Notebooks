@@ -219,7 +219,7 @@ IQRBasedSD = function(x){
   
 }
 
-boxPlotDescribe(){
+boxPlotDescribe = function(){
 
   set.seed(123)
   data = c(rnorm(100, mean = 10, sd = 2), 20, 22)  # two minor outliers
