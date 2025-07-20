@@ -8,5 +8,3 @@ if (!require("png")) install.packages("png", dependencies = T); library("png")
 if (!require("grid")) install.packages("grid", dependencies = T); library("grid") 
 source("./R/utils.R")
 
-
-is.numeric(returns$daily.returns)

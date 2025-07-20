@@ -163,15 +163,14 @@ empiricalRuleGaussian = function(data,   xlim = c(min(data), max(data))) {
     cat(sprintf("%s: %.2f%%\n", name, 100 * coverage[[name]]))
   }
 }
-
-chebyshevRule <- function(data, xlim = c(min(data), max(data)), ks = c(1, 2, 3)) {
-  n <- length(data)
-  emp_mean <- mean(data)
-  emp_sd <- sd(data)
+chebyshevRule = function(data, xlim = c(min(data), max(data)), ks = c(1, 2, 3)) {
+  n = length(data)
+  emp_mean = mean(data)
+  emp_sd = sd(data)
   
   # Construct intervals
-  intervals <- lapply(ks, function(k) c(emp_mean - k * emp_sd, emp_mean + k * emp_sd))
-  names(intervals) <- paste0("±", ks, " SD")
+  intervals = lapply(ks, function(k) c(emp_mean - k * emp_sd, emp_mean + k * emp_sd))
+  names(intervals) = paste0("±", ks, " SD")
   
   # Plot histogram
   hist(data, breaks = 25, probability = TRUE,
@@ -179,12 +178,12 @@ chebyshevRule <- function(data, xlim = c(min(data), max(data)), ks = c(1, 2, 3))
        xlab = "Value", col = "lightgray", border = "white", xlim = xlim)
   
   # Colors and line types for overlays
-  cols <- c("red", "green", "blue", "purple", "orange")[seq_along(ks)]
-  ltys <- 2:(1 + length(ks))
+  cols = c("red", "green", "blue", "purple", "orange")[seq_along(ks)]
+  ltys = 2:(1 + length(ks))
   
   # Draw vertical lines and annotate intervals
   for (i in seq_along(intervals)) {
-    bounds <- intervals[[i]]
+    bounds = intervals[[i]]
     abline(v = bounds, col = cols[i], lwd = 2, lty = ltys[i])
     
     # Add text showing interval bounds
@@ -200,12 +199,12 @@ chebyshevRule <- function(data, xlim = c(min(data), max(data)), ks = c(1, 2, 3))
          col = cols, lty = ltys, lwd = 2, bty = "n", text.col = cols)
   
   # Calculate empirical coverage
-  empirical_coverage <- sapply(intervals, function(bounds) {
+  empirical_coverage = sapply(intervals, function(bounds) {
     mean(data >= bounds[1] & data <= bounds[2])
   })
   
   # Chebyshev lower bounds
-  chebyshev_bounds <- sapply(ks, function(k) if (k >= 1) 1 - 1 / k^2 else NA)
+  chebyshev_bounds = sapply(ks, function(k) if (k >= 1) 1 - 1 / k^2 else NA)
   
   # Print results
   cat("Coverage vs. Chebyshev Lower Bound:\n")
@@ -214,7 +213,16 @@ chebyshevRule <- function(data, xlim = c(min(data), max(data)), ks = c(1, 2, 3))
                 ks[i], 100 * empirical_coverage[i], 100 * chebyshev_bounds[i]))
   }
   
+  invisible(list(
+    mean = emp_mean,
+    sd = emp_sd,
+    ks = ks,
+    intervals = intervals,
+    empirical_coverage = empirical_coverage,
+    chebyshev_bounds = chebyshev_bounds
+  ))
 }
+
 
 
 rangeBasedSD = function(x){
