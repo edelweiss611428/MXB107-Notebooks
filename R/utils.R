@@ -129,20 +129,18 @@ ModeBinMidpoint = function(x) {
 }
 
 
-
-
-empiricalRuleGaussian = function(data){
-
+empiricalRuleGaussian = function(data) {
   xlim = c(min(data), max(data))
   
   # Empirical mean and SD
   empMean = mean(data)
   empSd = sd(data)
+  
   # Define intervals: ±1 SD, ±2 SD, ±3 SD
   intervals = list(
     "±1 SD" = c(empMean - empSd, empMean + empSd),
-    "±2 SD" = c(empMean - 2*empSd, empMean + 2*empSd),
-    "±3 SD" = c(empMean - 3*empSd, empMean + 3*empSd)
+    "±2 SD" = c(empMean - 2 * empSd, empMean + 2 * empSd),
+    "±3 SD" = c(empMean - 3 * empSd, empMean + 3 * empSd)
   )
   
   # Plot histogram with density curve
@@ -151,15 +149,24 @@ empiricalRuleGaussian = function(data){
        xlab = "Value", col = "lightgray", border = "white", xlim = xlim)
   curve(dnorm(x, mean = empMean, sd = empSd), add = TRUE, col = "blue", lwd = 2)
   
-  
-  cols = c("red", "green", "purple")
-  ltys  = c(2, 3, 4)
-  
   # Add vertical lines for intervals
-  for (i in 1:length(intervals)) {
+  cols = c("red", "green", "purple")
+  ltys = c(2, 3, 4)
+  
+  for (i in seq_along(intervals)) {
     abline(v = intervals[[i]], col = cols[i], lwd = 2, lty = ltys[i])
   }
   
-  # Add legends
-  legend("topright", legend = names(intervals), col = cols, lty = ltys, lwd = 2,bty = "n")
+  legend("topright", legend = names(intervals), col = cols, lty = ltys, lwd = 2, bty = "n")
+  
+  # Compute and print empirical coverage
+  coverage = sapply(intervals, function(bounds) {
+    mean(data >= bounds[1] & data <= bounds[2])
+  })
+  
+  # Print results
+  cat("Empirical coverage:\n")
+  for (name in names(coverage)) {
+    cat(sprintf("%s: %.2f%%\n", name, 100 * coverage[[name]]))
+  }
 }
