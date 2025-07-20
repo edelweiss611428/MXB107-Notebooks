@@ -127,3 +127,37 @@ ModeBinMidpoint = function(x) {
   
   return(midpoint)
 }
+
+
+
+
+empiricalRule = function(data){
+
+  # Empirical mean and SD
+  empMean = mean(data)
+  empSd = sd(data)
+  # Define intervals: ±1 SD, ±2 SD, ±3 SD
+  intervals = list(
+    "±1 SD" = c(empMean - empSd, empMean + empSd),
+    "±2 SD" = c(empMean - 2*empSd, empMean + 2*empSd),
+    "±3 SD" = c(empMean - 3*empSd, empMean + 3*empSd)
+  )
+  
+  # Plot histogram with density curve
+  hist(data, breaks = 30, probability = TRUE,
+       main = "Gaussian Data with ±1 SD, ±2 SD, and ±3 SD Intervals",
+       xlab = "Value", col = "lightgray", border = "white")
+  curve(dnorm(x, mean = empMean, sd = empSd), add = TRUE, col = "blue", lwd = 2)
+  
+  
+  cols = c("red", "green", "purple")
+  ltys  = c(2, 3, 4)
+  
+  # Add vertical lines for intervals
+  for (i in 1:length(intervals)) {
+    abline(v = intervals[[i]], col = cols[i], lwd = 2, lty = ltys[i])
+  }
+  
+  # Add legends
+  legend("topright", legend = names(intervals), col = cols, lty = ltys, lwd = 2,bty = "n")
+}
