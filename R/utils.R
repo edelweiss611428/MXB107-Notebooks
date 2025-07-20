@@ -219,7 +219,7 @@ rangeBasedSD = function(x){
 }
 
 
-IQEBasedSD = function(x){
+IQRBasedSD = function(x){
   
   range = quantile(x, 0.75) - quantile(x, 0.25) 
   return(range/1.349)
