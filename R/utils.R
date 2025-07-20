@@ -164,44 +164,64 @@ empiricalRuleGaussian = function(data,   xlim = c(min(data), max(data))) {
   }
 }
 
-
-chebyshevRule = function(data, xlim = c(min(data), max(data))) {
-  n = length(data)
-  empMean = mean(data)
-  empSd = sd(data)
+chebyshevRule <- function(data, xlim = c(min(data), max(data)), ks = c(1, 2, 3)) {
+  n <- length(data)
+  emp_mean <- mean(data)
+  emp_sd <- sd(data)
   
-  ks = c(1, 2, 3)
-  intervals = lapply(ks, function(k) c(empMean - k * empSd, empMean + k * empSd))
-  names(intervals) = paste0("±", ks, " SD")
+  # Construct intervals
+  intervals <- lapply(ks, function(k) c(emp_mean - k * emp_sd, emp_mean + k * emp_sd))
+  names(intervals) <- paste0("±", ks, " SD")
   
   # Plot histogram
   hist(data, breaks = 25, probability = TRUE,
        main = "Histogram with Chebyshev ±k SD Intervals",
        xlab = "Value", col = "lightgray", border = "white", xlim = xlim)
   
-  cols = c("red", "green", "purple")
-  ltys = c(2, 3, 4)
+  # Colors and line types for overlays
+  cols <- c("red", "green", "blue", "purple", "orange")[seq_along(ks)]
+  ltys <- 2:(1 + length(ks))
   
+  # Draw vertical lines and annotate intervals
   for (i in seq_along(intervals)) {
-    abline(v = intervals[[i]], col = cols[i], lwd = 2, lty = ltys[i])
+    bounds <- intervals[[i]]
+    abline(v = bounds, col = cols[i], lwd = 2, lty = ltys[i])
+    
+    # Add text showing interval bounds
+    text(x = bounds[1], y = 0, labels = sprintf("%.2f", bounds[1]), 
+         col = cols[i], pos = 4, cex = 0.8, offset = 0.2)
+    text(x = bounds[2], y = 0, labels = sprintf("%.2f", bounds[2]), 
+         col = cols[i], pos = 2, cex = 0.8, offset = 0.2)
   }
   
-  legend("topright", legend = names(intervals), col = cols, lty = ltys, lwd = 2, bty = "n")
+  legend("topright",
+         legend = paste0(names(intervals), 
+                         "\n[", sapply(intervals, function(b) sprintf("%.2f – %.2f", b[1], b[2])), "]"),
+         col = cols, lty = ltys, lwd = 2, bty = "n", text.col = cols)
   
   # Calculate empirical coverage
-  empirical_coverage = sapply(intervals, function(bounds) {
+  empirical_coverage <- sapply(intervals, function(bounds) {
     mean(data >= bounds[1] & data <= bounds[2])
   })
   
-  # Chebyshev lower bounds (valid for k >= 1)
-  chebyshev_bounds = sapply(ks, function(k) 1 - 1 / k^2)
+  # Chebyshev lower bounds
+  chebyshev_bounds <- sapply(ks, function(k) if (k >= 1) 1 - 1 / k^2 else NA)
   
   # Print results
   cat("Coverage vs. Chebyshev Lower Bound:\n")
   for (i in seq_along(ks)) {
-    cat(sprintf("k = %d: Empirical = %.2f%%, Chebyshev lower bound = %.2f%%\n",
+    cat(sprintf("k = %d: Empirical = %.2f%%, Chebyshev bound = %.2f%%\n",
                 ks[i], 100 * empirical_coverage[i], 100 * chebyshev_bounds[i]))
   }
+  
+  invisible(list(
+    mean = emp_mean,
+    sd = emp_sd,
+    ks = ks,
+    intervals = intervals,
+    empirical_coverage = empirical_coverage,
+    chebyshev_bounds = chebyshev_bounds
+  ))
 }
 
 
