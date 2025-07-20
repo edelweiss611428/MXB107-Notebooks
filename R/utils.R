@@ -143,7 +143,7 @@ empiricalRuleGaussian = function(data,   xlim = c(min(data), max(data))) {
   )
   
   # Plot histogram with density curve
-  hist(data, breaks = 30, probability = TRUE,
+  hist(data, breaks = 25, probability = TRUE,
        main = "Histogram with ±1 SD, ±2 SD, and ±3 SD Intervals",
        xlab = "Value", col = "lightgray", border = "white", xlim = xlim)
   curve(dnorm(x, mean = empMean, sd = empSd), add = TRUE, col = "blue", lwd = 2)
@@ -169,3 +169,44 @@ empiricalRuleGaussian = function(data,   xlim = c(min(data), max(data))) {
     cat(sprintf("%s: %.2f%%\n", name, 100 * coverage[[name]]))
   }
 }
+
+
+chebyshevRule = function(data, xlim = c(min(data), max(data))) {
+  n = length(data)
+  empMean = mean(data)
+  empSd = sd(data)
+  
+  ks = c(1, 2, 3)
+  intervals = lapply(ks, function(k) c(empMean - k * empSd, empMean + k * empSd))
+  names(intervals) = paste0("±", ks, " SD")
+  
+  # Plot histogram
+  hist(data, breaks = 25, probability = TRUE,
+       main = "Histogram with Chebyshev ±k SD Intervals",
+       xlab = "Value", col = "lightgray", border = "white", xlim = xlim)
+  
+  cols = c("red", "green", "purple")
+  ltys = c(2, 3, 4)
+  
+  for (i in seq_along(intervals)) {
+    abline(v = intervals[[i]], col = cols[i], lwd = 2, lty = ltys[i])
+  }
+  
+  legend("topright", legend = names(intervals), col = cols, lty = ltys, lwd = 2, bty = "n")
+  
+  # Calculate empirical coverage
+  empirical_coverage = sapply(intervals, function(bounds) {
+    mean(data >= bounds[1] & data <= bounds[2])
+  })
+  
+  # Chebyshev lower bounds (valid for k >= 1)
+  chebyshev_bounds = sapply(ks, function(k) 1 - 1 / k^2)
+  
+  # Print results
+  cat("Coverage vs. Chebyshev Lower Bound:\n")
+  for (i in seq_along(ks)) {
+    cat(sprintf("k = %d: Empirical = %.2f%%, Chebyshev bound = %.2f%%\n",
+                ks[i], 100 * empirical_coverage[i], 100 * chebyshev_bounds[i]))
+  }
+}
+
