@@ -144,7 +144,7 @@ empiricalRuleGaussian = function(data,   xlim = c(min(data), max(data))) {
   
   # Plot histogram with density curve
   hist(data, breaks = 30, probability = TRUE,
-       main = "Gaussian Data with ±1 SD, ±2 SD, and ±3 SD Intervals",
+       main = "Histogram with ±1 SD, ±2 SD, and ±3 SD Intervals",
        xlab = "Value", col = "lightgray", border = "white", xlim = xlim)
   curve(dnorm(x, mean = empMean, sd = empSd), add = TRUE, col = "blue", lwd = 2)
   
