@@ -214,14 +214,6 @@ chebyshevRule <- function(data, xlim = c(min(data), max(data)), ks = c(1, 2, 3))
                 ks[i], 100 * empirical_coverage[i], 100 * chebyshev_bounds[i]))
   }
   
-  invisible(list(
-    mean = emp_mean,
-    sd = emp_sd,
-    ks = ks,
-    intervals = intervals,
-    empirical_coverage = empirical_coverage,
-    chebyshev_bounds = chebyshev_bounds
-  ))
 }
 
 
