@@ -1,9 +1,5 @@
 skewness = function(x) {
   
-  if (na.rm){
-    x = x[!is.na(x)]
-    }
-  
   n = length(x)
   if (n < 3){
     return(NA_real_)
@@ -21,8 +17,6 @@ skewness = function(x) {
 
 
 kurtosis = function(x) {
-  
-  if (na.rm) x = x[!is.na(x)]
   
   n = length(x)
   if (n < 4) return(NA_real_)
