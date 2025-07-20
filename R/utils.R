@@ -219,3 +219,28 @@ IQRBasedSD = function(x){
   
 }
 
+boxPlotDescribe(){
+
+  set.seed(123)
+  data = c(rnorm(100, mean = 10, sd = 2), 20, 22)  # two minor outliers
+  
+
+  boxplot(data,
+          main = "Boxplot Example: Distribution with Minor Outliers",
+          ylab = "Value",
+          col = "lightblue")
+  
+
+  text(x = 1.2, y = median(data), labels = "Median (Q2)", pos = 4, col = "blue")
+  text(x = 0.8, y = quantile(data, 0.25), labels = "Q1 (25%)", pos = 2, col = "darkgreen")
+  text(x = 0.8, y = quantile(data, 0.75), labels = "Q3 (75%)", pos = 2, col = "darkgreen")
+  text(x = 1, y = min(data[data > quantile(data, 0.25) - 1.5*IQR(data)]),
+       labels = "Lower whisker", pos = 3, cex = 0.8)
+  text(x = 1, y = max(data[data < quantile(data, 0.75) + 1.5*IQR(data)]),
+       labels = "Upper whisker", pos = 3, cex = 0.8)
+  text(x = 1.1, y = 20, labels = "Outlier", pos = 3, col = "red", cex = 0.8)
+  text(x = 1.1, y = 22, labels = "Outlier", pos = 3, col = "red", cex = 0.8)
+  
+  
+}
+
