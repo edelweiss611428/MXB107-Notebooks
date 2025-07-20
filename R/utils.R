@@ -122,47 +122,65 @@ ModeBinMidpoint = function(x) {
   return(midpoint)
 }
 
-
-empiricalRuleGaussian = function(data,   xlim = c(min(data), max(data))) {
+empiricalRuleGaussian = function(data, xlim = c(min(data), max(data)), ks = c(1, 2, 3)) {
+  emp_mean = mean(data)
+  emp_sd = sd(data)
   
-  # Empirical mean and SD
-  empMean = mean(data)
-  empSd = sd(data)
+  # Create ±k*SD intervals
+  intervals = lapply(ks, function(k) c(emp_mean - k * emp_sd, emp_mean + k * emp_sd))
+  names(intervals) = paste0("±", ks, " SD")
   
-  # Define intervals: ±1 SD, ±2 SD, ±3 SD
-  intervals = list(
-    "±1 SD" = c(empMean - empSd, empMean + empSd),
-    "±2 SD" = c(empMean - 2 * empSd, empMean + 2 * empSd),
-    "±3 SD" = c(empMean - 3 * empSd, empMean + 3 * empSd)
-  )
-  
-  # Plot histogram with density curve
+  # Plot histogram and Gaussian curve
   hist(data, breaks = 25, probability = TRUE,
-       main = "Histogram with ±1 SD, ±2 SD, and ±3 SD Intervals",
+       main = "Histogram with Gaussian ±k SD Intervals",
        xlab = "Value", col = "lightgray", border = "white", xlim = xlim)
-  curve(dnorm(x, mean = empMean, sd = empSd), add = TRUE, col = "blue", lwd = 2)
   
-  # Add vertical lines for intervals
-  cols = c("red", "green", "purple")
-  ltys = c(2, 3, 4)
+  curve(dnorm(x, mean = emp_mean, sd = emp_sd),
+        add = TRUE, col = "blue", lwd = 2)
   
+  # Colors and line types
+  cols = c("red", "green", "purple", "orange", "brown")[seq_along(ks)]
+  ltys = 2:(1 + length(ks))
+  
+  # Add interval lines and labels
   for (i in seq_along(intervals)) {
-    abline(v = intervals[[i]], col = cols[i], lwd = 2, lty = ltys[i])
+    bounds = intervals[[i]]
+    abline(v = bounds, col = cols[i], lwd = 2, lty = ltys[i])
+    
+    # Add numeric labels at base of histogram
+    text(x = bounds[1], y = 0, labels = sprintf("%.2f", bounds[1]), 
+         col = cols[i], pos = 4, cex = 0.8, offset = 0.2)
+    text(x = bounds[2], y = 0, labels = sprintf("%.2f", bounds[2]), 
+         col = cols[i], pos = 2, cex = 0.8, offset = 0.2)
   }
   
-  legend("topright", legend = names(intervals), col = cols, lty = ltys, lwd = 2, bty = "n")
+  # Add legend with intervals and ranges
+  legend("topright",
+         legend = paste0(names(intervals),
+                         "\n[", sapply(intervals, function(b) sprintf("%.2f – %.2f", b[1], b[2])), "]"),
+         col = cols, lty = ltys, lwd = 2, bty = "n", text.col = cols)
   
-  # Compute and print empirical coverage
-  coverage = sapply(intervals, function(bounds) {
+  # Calculate empirical coverage
+  empirical_coverage = sapply(intervals, function(bounds) {
     mean(data >= bounds[1] & data <= bounds[2])
   })
   
-  # Print results
+  # Print coverage results
   cat("Empirical coverage:\n")
-  for (name in names(coverage)) {
-    cat(sprintf("%s: %.2f%%\n", name, 100 * coverage[[name]]))
+  for (i in seq_along(ks)) {
+    cat(sprintf("k = %d (±%.0f SD): %.2f%% of data\n",
+                ks[i], ks[i], 100 * empirical_coverage[i]))
   }
+  
+  invisible(list(
+    mean = emp_mean,
+    sd = emp_sd,
+    ks = ks,
+    intervals = intervals,
+    empirical_coverage = empirical_coverage
+  ))
 }
+
 chebyshevRule = function(data, xlim = c(min(data), max(data)), ks = c(1, 2, 3)) {
   n = length(data)
   emp_mean = mean(data)
