@@ -4,5 +4,6 @@ if (!require("tidyr")) install.packages("tidyr", dependencies = T); library("tid
 if (!require("stringr")) install.packages("stringr", dependencies = T); library("stringr") ##wrangling
 if (!require("magrittr")) install.packages("magrittr", dependencies = T); library("magrittr") ##pipeline
 if (!require("IRdisplay")) install.packages("IRdisplay", dependencies = T); library("IRdisplay") ##pipeline
+if (!require("png")) install.packages("png", dependencies = T); library("png") ##pipeline
 
 source("./R/utils.R")
