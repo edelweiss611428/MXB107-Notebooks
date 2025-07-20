@@ -131,8 +131,10 @@ ModeBinMidpoint = function(x) {
 
 
 
-empiricalRule = function(data, xlim = c(min(data), max(data))){
+empiricalRuleGaussian = function(data){
 
+  xlim = c(min(data), max(data))
+  
   # Empirical mean and SD
   empMean = mean(data)
   empSd = sd(data)
