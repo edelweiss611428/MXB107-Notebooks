@@ -6,5 +6,6 @@ if (!require("magrittr")) install.packages("magrittr", dependencies = T); librar
 if (!require("IRdisplay")) install.packages("IRdisplay", dependencies = T); library("IRdisplay") 
 if (!require("png")) install.packages("png", dependencies = T); library("png")
 if (!require("grid")) install.packages("grid", dependencies = T); library("grid") 
+if (!require("knitr")) install.packages("knitr", dependencies = T); library("knitr") 
 source("./R/utils.R")
 
