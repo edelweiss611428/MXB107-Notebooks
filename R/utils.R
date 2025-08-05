@@ -289,7 +289,7 @@ coinToss = function(nTimes, nRepeats) {
   for (i in 1:nRepeats) {
     tosses = sample(c("H", "T"), size = nTimes, replace = TRUE)
     heads = sum(tosses == "H")
-    results[i] = 100 * heads / nTimes
+    results[i] = heads / nTimes
   }
   
   return(results)
