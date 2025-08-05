@@ -282,3 +282,17 @@ boxPlotDescribe = function(){
   
 }
 
+
+coinToss = function(nTimes, nRepeats) {
+  results = numeric(nRepeats)
+  
+  for (i in 1:nRepeats) {
+    tosses = sample(c("H", "T"), size = nTimes, replace = TRUE)
+    heads = sum(tosses == "H")
+    results[i] = 100 * heads / nTimes
+  }
+  
+  return(results)
+}
+
+
