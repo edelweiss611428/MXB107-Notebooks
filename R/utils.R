@@ -295,4 +295,23 @@ coinToss = function(nTimes, nRepeats) {
   return(results)
 }
 
+generateZTable = function() {
+
+  row_vals = seq(-3.4, 3.4, by = 0.1)  # rows
+  col_vals = seq(0, 0.09, by = 0.01)   # columns
+  
+  z_table = matrix(NA, nrow = length(row_vals), ncol = length(col_vals))
+
+  for (i in seq_along(row_vals)) {
+    for (j in seq_along(col_vals)) {
+      z = row_vals[i] + col_vals[j]
+      z_table[i, j] = pnorm(z)  
+    }
+  }
+  
+  rownames(z_table) = sprintf("%.1f", row_vals)
+  colnames(z_table) = sprintf("%.2f", col_vals)
+  
+  return(round(z_table, 4) %>% kable())
+}
 
