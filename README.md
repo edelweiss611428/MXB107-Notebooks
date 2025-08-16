@@ -6,6 +6,7 @@ This repository contains Jupyter notebooks, datasets, and supporting scripts for
 - Week 1: [Introduction to Data Wrangling and Visualisation in R](https://colab.research.google.com/github/edelweiss611428/MXB107-Notebooks/blob/main/notebooks/Week_1.ipynb)
 - Week 2: [Numerical Data Summaries](https://colab.research.google.com/github/edelweiss611428/MXB107-Notebooks/blob/main/notebooks/Week_2.ipynb)
 - Week 3: [Bivariate Data Summaries](https://colab.research.google.com/github/edelweiss611428/MXB107-Notebooks/blob/main/notebooks/Week_3.ipynb)
+- Week 4: [Probability Review](https://colab.research.google.com/github/edelweiss611428/MXB107-Notebooks/blob/main/notebooks/Week_4.ipynb)
 
 Feel free to explore and modify the materials for your own learning.
 
