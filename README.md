@@ -9,6 +9,7 @@ This repository contains Jupyter notebooks, datasets, and supporting scripts for
 - Week 4: [Probability Review](https://colab.research.google.com/github/edelweiss611428/MXB107-Notebooks/blob/main/notebooks/Week_4.ipynb)
 - Week 5: [Introduction to Random Variables](https://colab.research.google.com/github/edelweiss611428/MXB107-Notebooks/blob/main/notebooks/Week_5.ipynb)
 - Week 6: [Sampling Methods](https://colab.research.google.com/github/edelweiss611428/MXB107-Notebooks/blob/main/notebooks/Week_6.ipynb)
+- Week 7: [Parameter Estimation Methods](https://colab.research.google.com/github/edelweiss611428/MXB107-Notebooks/blob/main/notebooks/Week_7.ipynb)
   
 Feel free to explore and modify the materials for your own learning.
 
