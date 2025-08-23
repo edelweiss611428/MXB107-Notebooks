@@ -315,3 +315,45 @@ generateZTable = function() {
   return(round(z_table, 4) %>% kable())
 }
 
+CI_visualiser = function(seed = NULL){
+  
+  set.seed(seed)
+  
+  mu_true  = 2.0
+  sigma    = 1.5
+  n        = 10
+  reps     = 100
+  conf_lvl = 0.95
+  
+  t_ci = function(x, conf = 0.95) {
+    n = length(x)
+    xbar = mean(x)
+    s    = sd(x)
+    alpha = 1 - conf
+    tcrit = qt(1 - alpha/2, df = n - 1)
+    se = s / sqrt(n)
+    c(lower = xbar - tcrit * se, upper = xbar + tcrit * se, mean = xbar)
+  }
+  
+  # simulate
+  cis = t(sapply(1:reps, function(i) {
+    x = rnorm(n, mean = mu_true, sd = sigma)
+    t_ci(x, conf_lvl)
+  }))
+  
+  covered = (cis[,1] <= mu_true & mu_true <= cis[,2])
+  coverage = mean(covered)
+  
+  # plot
+  plot(NA, xlim = range(cis[,1:2]), ylim = c(1, reps),
+       xlab = "Value", ylab = "Iteration",
+       main = sprintf("95%% CI Coverage = %.2f (%d/%d)", coverage, sum(covered), reps))
+  abline(v = mu_true, lty = 2, col = "blue")
+  
+  for (i in 1:reps) {
+    col = if (covered[i]) "black" else "red"
+    segments(cis[i,1], i, cis[i,2], i, col = col, lwd = 2)
+    points(cis[i,3], i, col = col, pch = 16, cex = 0.6)  # sample mean
+  }
+}
+
