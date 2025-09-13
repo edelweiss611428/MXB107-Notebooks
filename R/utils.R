@@ -359,15 +359,14 @@ CI_visualiser = function(seed = NULL){
 
 generateTTable = function() {
 
-  alpha = c(0.10, 0.05, 0.025, 0.01, 0.005)  # common alpha levels
-  prob = 1 - alpha / 2  # for two-sided tests
+  alpha <- c(0.20, 0.10, 0.05, 0.025, 0.01, 0.005, 0.001)
   
-  df = 1:30  # example df from 1 to 30
+  df <- 1:30
   
-  t_table = sapply(prob, function(p) qt(p, df))
+  t_table <- sapply(alpha, function(a) qt(1 - a, df))
   
-  colnames(t_table) = paste0("alpha=", alpha)
-  rownames(t_table) = paste0("df=", df)
+  colnames(t_table) <- paste0("alpha=", alpha)
+  rownames(t_table) <- paste0("df=", df)
   
   return(round(t_table, 4) %>% kable())
 }
