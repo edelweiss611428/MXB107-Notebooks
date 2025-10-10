@@ -14,6 +14,7 @@ This repository contains Jupyter notebooks, datasets, and supporting scripts for
 - Week 9: [Small Sample Inference](https://colab.research.google.com/github/edelweiss611428/MXB107-Notebooks/blob/main/notebooks/Week_9.ipynb)
 - Week 10: [Analysis of Variance](https://colab.research.google.com/github/edelweiss611428/MXB107-Notebooks/blob/main/notebooks/Week_10.ipynb)
 - Week 11: [Simple Linear Regression](https://colab.research.google.com/github/edelweiss611428/MXB107-Notebooks/blob/main/notebooks/Week_11.ipynb)
+- Week 12: [Categorical Data Analysis](https://colab.research.google.com/github/edelweiss611428/MXB107-Notebooks/blob/main/notebooks/Week_12.ipynb)
   
 Feel free to explore and modify the materials for your own learning.
 
