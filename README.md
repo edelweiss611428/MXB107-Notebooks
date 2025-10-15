@@ -1,4 +1,4 @@
-# Welcome to MXB107: Probability and Statistics (A.Y. 2025, Semester 2)
+# Welcome to MXB107: Probability and Statistics (A.Y. 2025, SEM 2)
 
 This repository contains Jupyter notebooks, datasets, and supporting scripts for the weekly workshops of MXB107 (A.Y. 2025, Semester 2). Some of the content is adapted from materials used in previous years of MXB107.
 
