@@ -1,6 +1,6 @@
-# Welcome to MXB107: Probability and Statistics
+# Welcome to MXB107: Probability and Statistics (A.Y. 2025, Semester 2)
 
-This repository contains Jupyter notebooks, datasets, and supporting scripts for the weekly workshops of MXB107 (A.Y. 2025). Some of the content is adapted from materials used in previous years of MXB107.
+This repository contains Jupyter notebooks, datasets, and supporting scripts for the weekly workshops of MXB107 (A.Y. 2025, Semester 2). Some of the content is adapted from materials used in previous years of MXB107.
 
 - Week 0: [R Review](https://colab.research.google.com/github/edelweiss611428/MXB107-Notebooks/blob/main/notebooks/Week_0.ipynb)
 - Week 1: [Data Wrangling and Visualisation in R](https://colab.research.google.com/github/edelweiss611428/MXB107-Notebooks/blob/main/notebooks/Week_1.ipynb)
